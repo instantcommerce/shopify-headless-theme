@@ -1,0 +1,25 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Headless Theme",
+    "theme_author": "Story of AMS",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://github.com/storyofams/shopify-headless-theme/issues",
+    "theme_support_url": "https://github.com/storyofams/shopify-headless-theme"
+  },
+  {
+    "name": "Storefront",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Settings"
+      },
+      {
+        "type": "text",
+        "id": "storefront_url",
+        "info": "https:\/\/example.com\/",
+        "label": "Storefront URL"
+      }
+    ]
+  }
+]

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ shop.name }}</title>
+
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        padding: 100px 25px;
+        text-align: center;
+      }
+      p {
+        color: #333;
+      }
+      a {
+        color: #1878B9;
+      }
+    </style>
+
+    {{ content_for_header }}
+
+    {%- if settings.storefront_url != blank -%}
+    <script>
+      if (!window.Shopify.designMode) {
+        window.storefrontRedirectUrl = window.location.href.replace("{{ shop.url }}", "{{ settings.storefront_url }}");
+        window.location.replace(window.storefrontRedirectUrl);
+      }
+    </script>
+    {%- endif -%}
+  </head>
+  <body>
+    {{ content_for_layout }}
+
+    {%- if settings.storefront_url != blank -%}
+    <h1>Redirecting...</h1>
+    <p>
+      <a id="redirect-link" href="{{ settings.storefront_url }}">Click here</a>
+      if you are not automically redirected.
+    </p>
+    <script>
+      if (!window.Shopify.designMode) {
+        var redirectLink = document.getElementById("redirect-link");
+        redirectLink.href = window.storefrontRedirectUrl;
+      }
+    </script>
+    {%- else -%}
+    <h1>Redirect URL not set</h1>
+    <p>Configure the `storefront_url` in the theme settings.</p>
+    {%- endif -%}
+  </body>
+</html>

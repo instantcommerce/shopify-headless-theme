@@ -1,0 +1,14 @@
+{
+  "name": "shopify-headless-theme",
+  "description": "Basic liquid template that automatically redirects to your custom storefront.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Story of AMS",
+    "url": "https://storyofams.com/",
+    "email": "dev@storyofams.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && cd theme && zip -r ./../dist/headless-theme.zip ./*"
+  }
+}
