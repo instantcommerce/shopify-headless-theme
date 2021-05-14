@@ -16,9 +16,15 @@
       },
       {
         "type": "text",
-        "id": "storefront_url",
-        "info": "https:\/\/example.com\/",
-        "label": "Storefront URL"
+        "id": "base_url",
+        "info": "https://example.com/",
+        "label": "Base URL"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_redirects",
+        "info": "Shopify path > Storefront path [Learn more](https://github.com/storyofams/shopify-headless-theme#custom-redirects)",
+        "label": "Custom redirects"
       }
     ]
   }

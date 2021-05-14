@@ -1,6 +1,6 @@
 {
   "name": "shopify-headless-theme",
-  "description": "Basic Liquid theme for Shopify that automatically redirects to your custom storefront.",
+  "description": "Basic Liquid theme for Shopify that automatically redirects customers to your custom storefront.",
   "version": "1.0.0",
   "author": {
     "name": "Story of AMS",
