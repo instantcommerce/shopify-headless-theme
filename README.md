@@ -43,4 +43,5 @@ The example below removes the `/account` prefix from the login, register and res
 /account/login > /login
 /account/register > /register
 /account/reset > /reset-password
+/account/activate > /activate-account
 ```
