@@ -22,7 +22,7 @@
 
     {{ content_for_header }}
 
-    {%- if settings.base_url != blank -%}
+    {%- if settings.storefront_hostname != blank -%}
     <script>
       if (!window.Shopify.designMode) {
         var currentHostname = window.location.hostname;
@@ -60,7 +60,7 @@
     {%- if settings.storefront_hostname != blank -%}
     <h1>Redirecting...</h1>
     <p>
-      <a id="redirect-link" href="{{ settings.storefront_hostname }}">Click here</a>
+      <a id="redirect-link" href="https://{{ settings.storefront_hostname }}/">Click here</a>
       if you are not automically redirected.
     </p>
     <script>
@@ -71,7 +71,7 @@
     </script>
     {%- else -%}
     <h1>Redirect URL not set</h1>
-    <p>Configure the storefront `storefront_hostname` in the theme settings.</p>
+    <p>Configure the `storefront_hostname` in the theme settings.</p>
     {%- endif -%}
   </body>
 </html>
