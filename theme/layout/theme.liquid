@@ -57,7 +57,7 @@
   <body>
     {{ content_for_layout }}
 
-    {%- if settings.base_url != blank -%}
+    {%- if settings.storefront_hostname != blank -%}
     <h1>Redirecting...</h1>
     <p>
       <a id="redirect-link" href="{{ settings.storefront_hostname }}">Click here</a>
