@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "main-redirect"
+      "type": "main-login"
     }
   },
   "order": ["main"]

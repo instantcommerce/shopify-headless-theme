@@ -17,14 +17,21 @@
       {
         "type": "text",
         "id": "storefront_hostname",
-        "info": "Without protocol, e.g. mydomain.com",
-        "label": "Hostname"
+        "label": "Hostname",
+        "info": "Without protocol, e.g. mydomain.com"
       },
       {
         "type": "textarea",
         "id": "custom_redirects",
-        "info": "Shopify path > Storefront path [Learn more](https://github.com/instantcommerce/shopify-headless-theme#custom-redirects)",
-        "label": "Custom redirects"
+        "label": "Custom redirects",
+        "info": "Shopify path > Storefront path [Learn more](https://github.com/instantcommerce/shopify-headless-theme#custom-redirects)"
+      },
+      {
+        "type": "checkbox",
+        "id": "multipass_login",
+        "default": false,
+        "label": "Multipass login",
+        "info": "If multipass is implemented the login will also redirect to your storefront [Learn more](https://shopify.dev/api/multipass)"
       }
     ]
   },
