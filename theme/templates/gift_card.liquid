@@ -22,9 +22,9 @@
 
     {%- assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros | strip_html -%}
 
-    <title>{{ 'gift_cards.issued.title' | t: value: formatted_initial_value, shop: shop.name }}</title>
+    <title>{{ "Here's your {{ value }} gift card for {{ shop }}!" | t: value: formatted_initial_value, shop: shop.name }}</title>
 
-    <meta name="description" content="{{ 'gift_cards.issued.subtext' | t }}">
+    <meta name="description" content="Your gift card">
 
     {{ content_for_header }}
 
@@ -99,7 +99,7 @@
   <body class="gradient">
     <header class="gift-card__title">
       <span class="h2">{{ shop.name }}</span>
-      <h1 class="gift-card__heading">{{ 'gift_cards.issued.subtext' | t }}</h1>
+      <h1 class="gift-card__heading">Your gift card</h1>
       <div class="gift-card__price">
         <p>
           {% if settings.currency_code_enabled %}
@@ -109,7 +109,7 @@
           {% endif %}
         </p>
         {%- if gift_card.enabled == false or gift_card.expired -%}
-          <p class="gift-card__label badge badge--background-1">{{ 'gift_cards.issued.expired' | t }}</p>
+          <p class="gift-card__label badge badge--background-1">Expired</p>
         {%- endif -%}
       </div>
 
@@ -119,7 +119,7 @@
         {%- assign gift_card_balance = gift_card.balance | money -%}
       {% endif %}
       {%- if gift_card.balance != gift_card.initial_value -%}
-        <p class="gift-card__label caption-large">{{ 'gift_cards.issued.remaining_html' | t: balance: gift_card_balance }}</p>
+        <p class="gift-card__label caption-large">{{ "Remaining {{ balance }}" | t: balance: gift_card_balance }}</p>
       {%- endif -%}
     </header>
 
@@ -133,14 +133,14 @@
           type="text"
           class="gift-card__number"
           value="{{ gift_card.code | format_code }}"
-          aria-label="{{ 'gift_cards.issued.gift_card_code' | t }}"
+          aria-label="Gift card code"
           readonly
         >
         <div class="gift-card__copy-code">
-          <button class="link gift-card__copy-link">{{ 'gift_cards.issued.copy_code' | t }}</button>
+          <button class="link gift-card__copy-link">Copy code</button>
           <span class="gift-card__copy-success form__message" role="status"></span>
           <template>
-            {%- render 'icon-success' -%}{{ 'gift_cards.issued.copy_code_success' | t }}
+            {%- render 'icon-success' -%}Code copied successfully
           </template>
         </div>
         {%- if gift_card.pass_url -%}
@@ -156,26 +156,26 @@
             rel="noopener"
             aria-describedby="a11y-new-window-message"
           >
-            {{ 'gift_cards.issued.shop_link' | t }}
+            Continue shopping
           </a>
           <button
             class="button button--secondary"
             onclick="window.print();"
           >
-            {{ 'gift_cards.issued.print_gift_card' | t }}
+            Print
           </button>
         </div>
       </div>
     </main>
 
     <div hidden>
-      <span id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</span>
+      <span id="a11y-new-window-message">Opens in a new window.</span>
     </div>
   </body>
 </html>
 
 <script>
-  var string = { qrImageAlt: {{ 'gift_cards.issued.qr_image_alt' | t | json }} };
+  var string = { qrImageAlt: "QR code — scan to redeem gift card" };
   document.addEventListener('DOMContentLoaded', function() {
    new QRCode( document.querySelector('.gift-card__qr-code'), {
     text: document.querySelector('.gift-card__qr-code').dataset.identifier,
