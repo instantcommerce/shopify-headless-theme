@@ -25,28 +25,31 @@
     {%- if settings.base_url != blank -%}
     <script>
       if (!window.Shopify.designMode) {
-        var shopifyShopUrl = "{{ shop.url }}";
-        var storefrontBaseUrl = "{{ settings.base_url }}".replace(/\/$/, '');
-        var redirectUrl = window.location.href.replace(shopifyShopUrl, storefrontBaseUrl);
+        var currentHostname = window.location.hostname;
+        var storefrontHostname = "{{ settings.storefront_hostname }}";
 
-        var customRedirectsStr = "{{ settings.custom_redirects | newline_to_br | strip_newlines | replace: ' ', '' }}";
-        if (customRedirectsStr) {
-          var customRedirects = customRedirectsStr.split('<br/>');
+        if (currentHostname !== storefrontHostname) {
+          var redirectUrl = window.location.href.replace(currentHostname, storefrontHostname);
 
-          for (var cri = 0; cri < customRedirects.length; cri += 1) {
-            var redirect = customRedirects[cri].split('>');
-            var fromPath = redirect[0];
-            var toPath = redirect[1];
-
-            if (fromPath && toPath && redirectUrl.startsWith(storefrontBaseUrl + fromPath)) {
-              redirectUrl = redirectUrl.replace(storefrontBaseUrl + fromPath, storefrontBaseUrl + toPath);
-              break;
+          var customRedirectsStr = "{{ settings.custom_redirects | newline_to_br | strip_newlines | replace: ' ', '' }}";
+          if (customRedirectsStr) {
+            var customRedirects = customRedirectsStr.split('<br/>');
+  
+            for (var cri = 0; cri < customRedirects.length; cri += 1) {
+              var redirect = customRedirects[cri].split('>');
+              var fromPath = redirect[0];
+              var toPath = redirect[1];
+  
+              if (fromPath && toPath && redirectUrl.startsWith(storefrontBaseUrl + fromPath)) {
+                redirectUrl = redirectUrl.replace(storefrontBaseUrl + fromPath, storefrontBaseUrl + toPath);
+                break;
+              }
             }
           }
-        }
 
-        window.storefrontRedirectUrl = redirectUrl;
-        window.location.replace(redirectUrl);
+          window.storefrontRedirectUrl = redirectUrl;
+          window.location.replace(redirectUrl);
+        }
       }
     </script>
     {%- endif -%}
@@ -57,7 +60,7 @@
     {%- if settings.base_url != blank -%}
     <h1>Redirecting...</h1>
     <p>
-      <a id="redirect-link" href="{{ settings.base_url }}">Click here</a>
+      <a id="redirect-link" href="{{ settings.storefront_hostname }}">Click here</a>
       if you are not automically redirected.
     </p>
     <script>
@@ -68,7 +71,7 @@
     </script>
     {%- else -%}
     <h1>Redirect URL not set</h1>
-    <p>Configure the storefront `base_url` in the theme settings.</p>
+    <p>Configure the storefront `storefront_hostname` in the theme settings.</p>
     {%- endif -%}
   </body>
 </html>
