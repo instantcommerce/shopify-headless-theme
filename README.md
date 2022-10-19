@@ -22,7 +22,7 @@ The sole purpose of this Liquid theme is to automatically redirect customers tha
 2. Navigate to **Online Store > Themes** in your Shopify admin
 3. Upload the theme to your **Theme Library**
 4. Click the **Customize** button of the newly installed theme
-5. Configure the `base_url` in **Theme settings > Storefront**
+5. Configure the `storefront_hostname` in **Theme settings > Storefront**
 6. **Publish** the theme 🚀
 
 ## Custom redirects
