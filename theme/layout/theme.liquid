@@ -22,7 +22,7 @@
 
     {{ content_for_header }}
 
-    {%- if settings.base_url != blank -%}
+    {%- if settings.storefront_hostname != blank -%}
     <script>
       if (!window.Shopify.designMode) {
         var currentHostname = window.location.hostname;
