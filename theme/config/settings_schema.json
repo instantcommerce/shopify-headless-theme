@@ -16,9 +16,9 @@
       },
       {
         "type": "text",
-        "id": "base_url",
-        "info": "https://example.com/",
-        "label": "Base URL"
+        "id": "storefront_hostname",
+        "info": "Without protocol, e.g. mydomain.com",
+        "label": "Hostname"
       },
       {
         "type": "textarea",
