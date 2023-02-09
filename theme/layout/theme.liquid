@@ -146,7 +146,14 @@
       <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
     {%- endunless -%}
 
-    {%- if settings.storefront_hostname != blank and template.name != 'login' or settings.multipass_login -%}
+    {% comment %}
+      Should redirect if all conditions are met:
+      - The template is defined (will be undefined for app proxies like /apps|a|community|tools/*)
+      - The current template is not the login page, unless multipass login is enabled
+    {% endcomment %}
+    {%- assign should_redirect = template != blank and template.name != 'login' or settings.multipass_login -%}
+
+    {%- if settings.storefront_hostname != blank and should_redirect -%}
     <script>
       if (!window.Shopify.designMode) {
         var currentHostname = window.location.hostname;
@@ -181,7 +188,7 @@
   <body>
     {{ content_for_layout }}
 
-    {%- if template.name != 'login' or settings.multipass_login -%}
+    {%- if should_redirect -%}
       <div class="redirect">
         {%- if settings.storefront_hostname != blank -%}
         <h1>Redirecting...</h1>
