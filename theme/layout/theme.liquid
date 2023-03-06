@@ -22,7 +22,7 @@
 
     {{ content_for_header }}
 
-    {%- if settings.base_url != blank -%}
+    {%- if settings.base_url != blank and request.page_type != "customers/activate_account" -%}
     <script>
       if (!window.Shopify.designMode) {
         var shopifyShopUrl = "{{ shop.url }}";
@@ -54,21 +54,23 @@
   <body>
     {{ content_for_layout }}
 
-    {%- if settings.base_url != blank -%}
-    <h1>Redirecting...</h1>
-    <p>
-      <a id="redirect-link" href="{{ settings.base_url }}">Click here</a>
-      if you are not automically redirected.
-    </p>
-    <script>
-      if (!window.Shopify.designMode) {
-        var redirectLink = document.getElementById("redirect-link");
-        redirectLink.href = window.storefrontRedirectUrl;
-      }
-    </script>
-    {%- else -%}
-    <h1>Redirect URL not set</h1>
-    <p>Configure the storefront `base_url` in the theme settings.</p>
+    {%- if request.page_type != "customers/activate_account"  -%}
+      {%- if settings.base_url != blank -%}
+      <h1>Redirecting...</h1>
+      <p>
+        <a id="redirect-link" href="{{ settings.base_url }}">Click here</a>
+        if you are not automically redirected.
+      </p>
+      <script>
+        if (!window.Shopify.designMode) {
+          var redirectLink = document.getElementById("redirect-link");
+          redirectLink.href = window.storefrontRedirectUrl;
+        }
+      </script>
+      {%- else -%}
+      <h1>Redirect URL not set</h1>
+      <p>Configure the storefront `base_url` in the theme settings.</p>
+      {%- endif -%}
     {%- endif -%}
   </body>
 </html>
