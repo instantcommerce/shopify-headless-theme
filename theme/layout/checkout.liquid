@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    <style>#cap-checkout { padding: 2rem; } #cap-checkout h3 { margin-top: 0.5rem; font-weight: normal; } #cap-checkout a { background-color: #4a858c; border-radius: 0.25rem; color: #fff; display: inline-block; font-weight: bold; letter-spacing: 0.05em; margin-top: 1rem; padding: 1rem; }</style>
+  </head>
+  <body>
+    {{ skip_to_content_link }}
+
+    <header class="banner" data-header role="banner">
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main">
+          <header class="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </header>
+          <main class="main__content" role="main">
+            {{ content_for_layout }}
+          </main>
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+    <script type="text/javascript">
+      function contentWrap() {
+        var el = document.createElement("div");
+        el.id = "cap-checkout";
+        return el;
+      }
+        
+      function contentTitle() {
+        var el = document.createElement("h2");
+        
+        var text = document.createTextNode(
+          "Ensure your students are ready for their classes!"
+        );
+        
+        el.appendChild(text);
+        return el;
+      }
+        
+      function contentSubtitle() {
+        var el = document.createElement("h3");
+        var text = document.createTextNode("Get your hands on the necessary curriculum and textbooks, available now at Classical Academic Press.");
+        el.appendChild(text);
+        return el;
+      }
+        
+      function contentLink() {
+        var el = document.createElement("a");
+        var text = document.createTextNode("Shop today");
+        el.href = "https://classicalacademicpress.com/collections";
+        el.target = "_blank";
+        el.appendChild(text);
+        return el;
+      }
+        
+      function step(time) {
+        return function (tick) {
+          if (tick - time > 500) {
+            var path = '//h2[text()="Your order is complete"]';
+            var el = document.evaluate(path, document, null, 0, null).iterateNext();
+            if (el) {
+              var wrap = contentWrap();
+              wrap.appendChild(contentTitle());
+              wrap.appendChild(contentSubtitle());
+              wrap.appendChild(contentLink());
+              el.replaceWith(wrap);
+            } else {
+              window.requestAnimationFrame(step(tick));
+            }
+          } else {
+            window.requestAnimationFrame(step(time));
+          }
+        };
+      }
+        
+      var input = document.getElementById("checkout_email");
+      if (input) input.disabled = true;
+      window.requestAnimationFrame(step(0));
+    </script>
+  </body>
+</html>

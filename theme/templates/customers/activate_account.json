@@ -1,8 +1,10 @@
 {
   "sections": {
     "main": {
-      "type": "main-redirect"
+      "type": "main-activate-account"
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
