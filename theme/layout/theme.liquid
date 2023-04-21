@@ -155,7 +155,6 @@
 
     {%- if settings.storefront_hostname != blank and should_redirect -%}
     <script>
-    
       var discount_code = getCookie('discount_code');
 
       function getCookie(name) {
@@ -194,7 +193,6 @@
           }
 
           redirectUrl = new URL(redirectUrl);
-
           redirectUrl.searchParams.append("discount_code", discount_code);
 
           window.storefrontRedirectUrl = redirectUrl;
