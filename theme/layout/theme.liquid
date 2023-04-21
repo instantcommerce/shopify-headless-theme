@@ -170,12 +170,6 @@
         }
       }
 
-      var url = new URL(window.location.href)
-
-      var params = new URLSearchParams(url.search);
-      
-      params.append("discount_code", discount_code);
-    
       if (!window.Shopify.designMode) {
         var currentHostname = window.location.hostname;
         var storefrontHostname = "{{ settings.storefront_hostname }}";
