@@ -185,8 +185,8 @@
               var fromPath = redirect[0];
               var toPath = redirect[1];
   
-              if (fromPath && toPath && redirectUrl.startsWith(storefrontBaseUrl + fromPath)) {
-                redirectUrl = redirectUrl.replace(storefrontBaseUrl + fromPath, storefrontBaseUrl + toPath);
+              if (fromPath && toPath && redirectUrl.startsWith('https://' + storefrontHostname + fromPath)) {
+                redirectUrl = redirectUrl.replace(storefrontHostname + fromPath, storefrontHostname + toPath);
                 break;
               }
             }
