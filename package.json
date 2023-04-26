@@ -9,6 +9,6 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && cd theme && zip -r ./../dist/instant-headless-theme.zip ./*"
+    "build": "rm -rf dist && mkdir dist && zip -r ./dist/shopify-headless-theme.zip ./*"
   }
 }

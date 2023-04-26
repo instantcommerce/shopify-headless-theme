@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Instant Headless Theme",
+    "theme_name": "Shopify Headless Theme",
     "theme_author": "Instant Commerce",
-    "theme_version": "2.0.0",
-    "theme_documentation_url": "https://github.com/instantcommerce/shopify-headless-theme/issues",
-    "theme_support_url": "https://github.com/instantcommerce/shopify-headless-theme"
+    "theme_version": "3.0.0",
+    "theme_documentation_url": "https://github.com/instantcommerce/shopify-headless-theme",
+    "theme_support_url": "https://github.com/instantcommerce/shopify-headless-theme/issues"
   },
   {
     "name": "Storefront",
