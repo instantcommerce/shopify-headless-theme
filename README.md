@@ -5,7 +5,7 @@
   <h1 align="center">shopify-headless-theme</h1>
   <p align="center">
     Liquid theme that automatically redirects customers to your custom storefront.<br>
-    <a href="https://github.com/instantcommerce/shopify-headless-theme/raw/master/dist/instant-headless-theme.zip" download>Download theme</a></p>
+    <a href="https://github.com/instantcommerce/shopify-headless-theme/archive/refs/heads/master.zip" download>Download theme</a></p>
 </p>
 
 ---
