@@ -18,7 +18,7 @@ The sole purpose of this Liquid theme is to automatically redirect customers tha
 
 ## Installation
 
-1. Download the [instant-headless-theme.zip](https://github.com/instantcommerce/shopify-headless-theme/raw/master/dist/instant-headless-theme.zip) file
+1. Download the [shopify-headless-theme-master.zip](https://github.com/instantcommerce/shopify-headless-theme/archive/refs/heads/master.zip) file
 2. Navigate to **Online Store > Themes** in your Shopify admin
 3. Upload the theme to your **Theme Library**
 4. Click the **Customize** button of the newly installed theme
