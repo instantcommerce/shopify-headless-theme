@@ -208,7 +208,14 @@
           }
 
           window.storefrontRedirectUrl = redirectUrl;
-          window.location.replace(redirectUrl);
+
+          {%- comment -%}
+            When we're using the ga4 work-around, we'll have to patiently wait for gtag.js to complete
+            it's initialization.. so we will have to redirect later in the body.
+          {%- endcomment -%}
+          {%- unless settings.ga4_crossdomain -%}
+            window.location.replace(redirectUrl);
+          {%- endunless -%}
         }
       }
     </script>
@@ -229,6 +236,53 @@
           if (!window.Shopify.designMode) {
             var redirectLink = document.getElementById("redirect-link");
             redirectLink.href = window.storefrontRedirectUrl;
+            {%- if settings.ga4_crossdomain -%}
+              {%- comment -%}
+                Ugly but effect workaround for ga4 not properly (or kind of at all) programatically invoked
+                navigation events for cross-domain measurements.
+
+                We're esentially exploiting the fact that analytics try to "decorate" html forms when they
+                have an action that points to a domain included in the list that you've configured under
+                Data Streams -> Configure tag settings -> Configure your domains; in the analytics property
+                settings. See https://support.google.com/analytics/answer/10071811.
+
+                This code was originally written to fix cross-domain measurements the other way around, eg
+                between the headless frontend and the Shopify-hosted checkout for the e-commerce store
+                https://www.sweetsideofsweden.com. So you can repurpose this code to get proper cross-domain
+                measurements for you're checkouts too. :^)
+              {%- endcomment -%}
+              function getCrossDomainLinkerParameter() {
+                const form = document.createElement("form");
+                form.action = "https://{{ settings.storefront_hostname }}";
+                {%- comment -%}
+                  Note, `opacity: 0` is deliberately used since the ga4 decorator wouldn't be  or isn't able to
+                  detect `display: none`
+                {%- endcomment -%}
+                form.style.opacity = "0";
+                form.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                });
+                const btn = document.createElement("button");
+                btn.type = "submit";
+                form.append(btn);
+                document.body.append(form);
+                btn.click();
+
+                {%- comment -%}
+                  This could fail for a magnitude of reasons such as ad-blocking, invalid configuration, etc.
+                  But when it doesn't fail, which is most of the times we get full complete cross-domain measurements.
+                {%- endcomment -%}
+                const _gl = form.querySelector("input[name=\"_gl\"]");
+                if (_gl) return _gl.value;
+                return null;
+              }
+
+              const ga4 = getCrossDomainLinkerParameter();
+              if (ga4) {
+                redirectLink.href += `${redirectLink.href.includes("?") && "&" || "?"}_gl=${ga4}`;
+                redirectLink.click();
+              }
+            {%- endif -%}
           }
         </script>
         {%- else -%}
