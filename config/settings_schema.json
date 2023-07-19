@@ -32,6 +32,13 @@
         "default": false,
         "label": "Multipass login",
         "info": "If multipass is implemented the login will also redirect to your storefront [Learn more](https://shopify.dev/api/multipass)"
+      },
+      {
+        "type": "checkbox",
+        "id": "ga4_crossdomain",
+        "default": false,
+        "label": "GA4 cross-domain measurements",
+        "info": "Required to collect accurate attribution data from customers getting redirected by this theme [Learn more](https://support.google.com/analytics/answer/10071811?hl=en). For this to work you will need to have gtag.js loaded in <head> as a blocking script."
       }
     ]
   },
