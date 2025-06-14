@@ -1,57 +1,83 @@
-<p align="center">
-  <a href="https://instantcommerce.io/" target="_blank" align="center">
-    <img src="https://avatars.githubusercontent.com/u/93975473?s=200" alt="Instant Commerce" width="100">
-  </a>
-  <h1 align="center">shopify-headless-theme</h1>
-  <p align="center">
-    Liquid theme that automatically redirects customers to your custom storefront.<br>
-    <a href="https://github.com/instantcommerce/shopify-headless-theme/archive/refs/heads/master.zip" download>Download theme</a></p>
-</p>
+# Remlagret.se - Shopify Hydrogen Website
 
----
+En modern, headless e-handelswebbplats byggd med Shopify Hydrogen för Remlagret.se - Sveriges leverantör av industriella komponenter.
 
-## Purpose
+## Funktioner
 
-When using a headless Shopify setup, you normally don't want customers to access any of the theme pages except the checkout. However, you can't totally disable the theme and a lot of links will still point to the theme (e.g. links in emails, plugins and the checkout).
+- 🛍️ Full Shopify-integration
+- 🇸🇪 Svenskt språkstöd
+- 📱 Responsiv design
+- ⚡ Snabb prestanda med Hydrogen
+- 🎨 Anpassad design som matchar varumärket
 
-The sole purpose of this Liquid theme is to automatically redirect customers that land on one of the theme pages to the related page in your custom storefront.
+## Teknikstack
 
-## Installation
+- **Framework**: Shopify Hydrogen (Remix)
+- **Styling**: Tailwind CSS
+- **Språk**: TypeScript
+- **E-handel**: Shopify Storefront API
+- **Deployment**: Vercel
 
-1. Download the [shopify-headless-theme-master.zip](https://github.com/instantcommerce/shopify-headless-theme/archive/refs/heads/master.zip) file
-2. Navigate to **Online Store > Themes** in your Shopify admin
-3. Upload the theme to your **Theme Library**
-4. Click the **Customize** button of the newly installed theme
-5. Configure the `storefront_hostname` in **Theme settings > Storefront**
-6. **Publish** the theme 🚀
+## Kom igång
 
-## Custom redirects
+1. Klona repositoryt:
+\`\`\`bash
+git clone https://github.com/Remlagret-se/vercel2.git
+cd vercel2
+\`\`\`
 
-You can configure the `custom_redirects` value in **Theme settings > Storefront**.
+2. Installera dependencies:
+\`\`\`bash
+npm install
+\`\`\`
 
-The redirect rule format is as following:
+3. Sätt upp environment variables:
+\`\`\`bash
+cp .env.example .env
+\`\`\`
+Fyll i dina Shopify store-uppgifter i \`.env\`
 
-```
-Shopify path > Storefront path
-```
+4. Starta utvecklingsservern:
+\`\`\`bash
+npm run dev
+\`\`\`
 
-Each line in the textarea represents a single redirect rule.
+## Environment Variables
 
-### Example configuration
+Nödvändiga environment variables:
 
-The example below removes the `/account` prefix from the login, register and reset password redirects.
+- \`PUBLIC_SHOPIFY_STORE_DOMAIN\` - Din Shopify store-domän
+- \`PUBLIC_STOREFRONT_API_TOKEN\` - Shopify Storefront API token
+- \`PRIVATE_STOREFRONT_API_TOKEN\` - Privat Storefront API token
 
-```
-/account/login > /login
-/account/register > /register
-/account/reset > /reset-password
-/account/activate > /activate-account
-```
+## Deployment
 
-## Multipass login
+Detta projekt är konfigurerat för deployment på Vercel:
 
-Enable the `multipass_login` option in **Theme settings > Storefront** if you implemented [Multipass](https://shopify.dev/api/multipass) (a Shopify Plus feature) in your storefront. Enabling this feature will also redirect customers from the Shopify login page to your custom storefront. If not enabled, a customizable login page will be shown when customers click the "Log in" link in the checkout.
+1. Koppla ditt GitHub-repository till Vercel
+2. Sätt environment variables i Vercel dashboard
+3. Deploya automatiskt vid push till main branch
 
-## Gift cards
+## Projektstruktur
 
-Since the Shopify Storefront API unfortunately does not support fetching gift cards yet, a customizable `gift_card.liquid` template has been added.
+\`\`\`
+├── app/
+│   ├── components/     # Återanvändbara UI-komponenter
+│   ├── lib/           # Verktyg och konfigurationer
+│   ├── routes/        # Remix routes
+│   └── root.tsx       # Root-komponent
+├── public/            # Statiska assets
+└── ...
+\`\`\`
+
+## Licens
+
+Privat - Alla rättigheter förbehållna Remlagret.se
+\`\`\`
+
+## 4. Committa README-uppdateringen
+
+```bash type="code"
+git add README.md
+git commit -m "Update README with correct repository information"
+git push origin main
