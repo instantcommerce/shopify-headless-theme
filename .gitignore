@@ -11,3 +11,51 @@ Thumbs.db
 # Build files #
 ######################
 dist
+/build
+/public/build
+/.cache
+
+# Dependencies #
+######################
+node_modules
+/.pnp
+.pnp.js
+jspm_packages/
+
+# Environment variables #
+######################
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Logs #
+######################
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE files #
+######################
+.vscode
+.idea
+*.swp
+*.swo
+
+# Vercel #
+######################
+.vercel
+
+# Shopify #
+######################
+.shopify
+hydrogen.config.js
+
+# Remix specific #
+######################
+/.cache
+/build
+/public/build
